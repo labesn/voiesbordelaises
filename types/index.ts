@@ -24,6 +24,7 @@ export type LineStringFeature = {
     type: LaneType;
     doneAt?: string;
     link?: string;
+    quality?: LaneQuality;
   };
   geometry: {
     type: 'LineString';

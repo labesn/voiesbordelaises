@@ -53,6 +53,14 @@
           {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
         </div>
       </div>
+      <div v-if="displayQuality()" class="py-1 flex items-center justify-between">
+        <div class="text-base font-bold">
+          Qualité
+        </div>
+        <div class="text-sm text-right">
+          {{ qualityNames[feature.properties.quality as LaneQuality] ?? 'Inconnue' }}
+        </div>
+      </div>
     </div>
     <div class="bg-lvv-blue-600 flex justify-center">
       <a class="p-1 text-white text-base italic hover:underline" :href="getSectionDetailsUrl(feature.properties)" target="_blank">
@@ -63,10 +71,10 @@
 </template>
 
 <script setup lang="ts">
-import type { LineStringFeature } from '~/types';
+import type { LaneQuality, LineStringFeature } from '~/types';
 
 const { getLineColor } = useColors();
-const { getRevName } = useConfig();
+const { getRevName, displayQuality } = useConfig();
 const { getDistance, typologyNames } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
@@ -136,4 +144,13 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
   };
   return statusMapping[properties.status];
 }
+
+const qualityNames: Record<LaneQuality, string> = {
+  dangerous: 'Dangereuse',
+  bad: 'Non satisfaisante',
+  fair: 'Globalement ',
+  good: 'Satisfaisante',
+  perfect: 'Parfaite',
+  unknown: 'Inconnue'
+};
 </script>

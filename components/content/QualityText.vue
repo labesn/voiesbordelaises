@@ -50,6 +50,12 @@ const qualities: QualityText = {
     color: {
       text: 'text-[#00FF00]'
     }
+  },
+  unknown: {
+    title: 'Inconnue',
+    color: {
+      text: 'text-[#000000]'
+    }
   }
 };
 </script>

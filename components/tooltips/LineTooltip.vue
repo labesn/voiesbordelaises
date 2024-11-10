@@ -53,12 +53,12 @@
           {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
         </div>
       </div>
-      <div v-if="displayQuality()" class="py-1 flex items-center justify-between">
+      <div v-if="displayQuality() && feature.properties.quality" class="py-1 flex items-center justify-between">
         <div class="text-base font-bold">
           Qualité
         </div>
         <div class="text-sm text-right">
-          {{ qualityNames[feature.properties.quality as LaneQuality] ?? 'Inconnue' }}
+          {{ qualityNames[feature.properties.quality as LaneQuality] ?? '-' }}
         </div>
       </div>
     </div>

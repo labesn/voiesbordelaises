@@ -7,6 +7,7 @@
 import type { LaneQuality } from '~/types';
 
 const { displayQuality } = useConfig();
+const { qualityNames } = useStats();
 
 const { type } = defineProps<{
   type: LaneQuality
@@ -22,37 +23,37 @@ type QualityText = {
 }
 const qualities: QualityText = {
   dangerous: {
-    title: 'Dangereux',
+    title: qualityNames.dangerous,
     color: {
       text: 'text-[#FF0000]'
     }
   },
   bad: {
-    title: 'Non satisfaisant',
+    title: qualityNames.bad,
     color: {
       text: 'text-[#770000]'
     }
   },
   fair: {
-    title: 'À améliorer',
+    title: qualityNames.fair,
     color: {
       text: 'text-[#ff9c9c]'
     }
   },
   good: {
-    title: 'Satisfaisant',
+    title: qualityNames.good,
     color: {
       text: 'text-[#007700]'
     }
   },
   perfect: {
-    title: 'Parfait',
+    title: qualityNames.perfect,
     color: {
       text: 'text-[#00FF00]'
     }
   },
   unknown: {
-    title: 'Inconnue',
+    title: qualityNames.unknown,
     color: {
       text: 'text-[#000000]'
     }

@@ -75,7 +75,7 @@ import type { LaneQuality, LineStringFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName, displayQuality } = useConfig();
-const { getDistance, typologyNames } = useStats();
+const { getDistance, typologyNames, qualityNames } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
@@ -145,12 +145,4 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
   return statusMapping[properties.status];
 }
 
-const qualityNames: Record<LaneQuality, string> = {
-  dangerous: 'Dangereuse',
-  bad: 'Non satisfaisante',
-  fair: 'Globalement ',
-  good: 'Satisfaisante',
-  perfect: 'Parfaite',
-  unknown: 'Inconnue'
-};
 </script>

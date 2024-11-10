@@ -1,5 +1,5 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LineStringFeature } from '../types';
+import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LineStringFeature, type LaneQuality } from '../types';
 
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
@@ -150,6 +150,15 @@ export const useStats = () => {
     inconnu: 'Inconnu'
   };
 
+  const qualityNames: Record<LaneQuality, string> = {
+    dangerous: 'Dangereuse',
+    bad: 'Non satisfaisante',
+    fair: 'Globalement ',
+    good: 'Satisfaisante',
+    perfect: 'Parfaite',
+    unknown: 'Inconnue'
+  };
+
   function getStatsByTypology(voies: Geojson[]) {
     const lineStringFeatures = getAllUniqLineStrings(voies);
     const totalDistance = getDistance({ features: lineStringFeatures });
@@ -180,6 +189,7 @@ export const useStats = () => {
     getStatsByTypology,
     displayDistanceInKm,
     displayPercent,
-    typologyNames
+    typologyNames,
+    qualityNames
   };
 };

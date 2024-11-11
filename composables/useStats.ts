@@ -151,12 +151,8 @@ export const useStats = () => {
   };
 
   const qualityNames: Record<LaneQuality, string> = {
-    dangerous: 'Dangereuse',
-    bad: 'Non satisfaisante',
-    fair: 'Globalement ',
-    good: 'Satisfaisante',
-    perfect: 'Parfaite',
-    unknown: 'Inconnue'
+    unsatisfactory: 'Non satisfaisant',
+    satisfactory: 'Satisfaisant'
   };
 
   function getStatsByTypology(voies: Geojson[]) {

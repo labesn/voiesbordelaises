@@ -22,40 +22,16 @@ type QualityText = {
   }
 }
 const qualities: QualityText = {
-  dangerous: {
-    title: qualityNames.dangerous,
+  unsatisfactory: {
+    title: qualityNames.unsatisfactory,
     color: {
       text: 'text-[#FF0000]'
     }
   },
-  bad: {
-    title: qualityNames.bad,
+  satisfactory: {
+    title: qualityNames.satisfactory,
     color: {
-      text: 'text-[#770000]'
-    }
-  },
-  fair: {
-    title: qualityNames.fair,
-    color: {
-      text: 'text-[#ff9c9c]'
-    }
-  },
-  good: {
-    title: qualityNames.good,
-    color: {
-      text: 'text-[#007700]'
-    }
-  },
-  perfect: {
-    title: qualityNames.perfect,
-    color: {
-      text: 'text-[#00FF00]'
-    }
-  },
-  unknown: {
-    title: qualityNames.unknown,
-    color: {
-      text: 'text-[#000000]'
+      text: 'text-[#00b050]'
     }
   }
 };

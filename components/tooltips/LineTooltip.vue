@@ -57,8 +57,9 @@
         <div class="text-base font-bold">
           Qualité
         </div>
-        <div class="text-sm text-right">
-          {{ qualityNames[feature.properties.quality as LaneQuality] ?? '-' }}
+        <div class="text-xs" :class=" getQuality(feature.properties).class">
+          <span v-html="getQuality(feature.properties).icon"></span>
+          {{ getQuality(feature.properties).label }}
         </div>
       </div>
     </div>
@@ -71,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LaneQuality, LineStringFeature } from '~/types';
+import type { LineStringFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName, displayQuality } = useConfig();
@@ -143,6 +144,29 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
     }
   };
   return statusMapping[properties.status];
+}
+
+function getQuality(properties: LineStringFeature['properties']): { label?: string, class?: string, icon?: string } {
+  if (typeof properties.quality === 'undefined') {
+    return {};
+  }
+  const statusMapping = {
+    unsatisfactory: {
+      label: qualityNames.unsatisfactory,
+      class: 'rounded-xl px-1 border border-red-600',
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class="text-red-500 size-4 inline-block">\n' +
+        '  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />\n' +
+        '</svg>'
+    },
+    satisfactory: {
+      label: qualityNames.satisfactory,
+      class: 'rounded-xl px-1 border border-green-600',
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-green-500 size-4 inline-block">\n' +
+        '  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />\n' +
+        '</svg>'
+    }
+  };
+  return statusMapping[properties.quality];
 }
 
 </script>

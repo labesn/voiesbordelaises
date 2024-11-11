@@ -137,6 +137,20 @@ export const useStats = () => {
     };
   }
 
+  function getStatsQuality(voies: Geojson[]): { distance: number, percent: number, nbZone: number } {
+    const features = getAllUniqLineStrings(voies);
+    const totalDistance = getDistance({ features });
+    const unsatisfactoryFeatures = features.filter(feature => feature.properties.quality === 'unsatisfactory');
+
+    const unsatisfactoryDistance = getDistance({ features: unsatisfactoryFeatures });
+
+    return {
+      distance: unsatisfactoryDistance,
+      percent: Math.round(unsatisfactoryDistance / totalDistance * 100),
+      nbZone: unsatisfactoryFeatures.length
+    };
+  }
+
   const typologyNames: Record<LaneType, string> = {
     bidirectionnelle: 'Piste bidirectionnelle',
     bilaterale: 'Piste bilatérale',
@@ -186,6 +200,7 @@ export const useStats = () => {
     displayDistanceInKm,
     displayPercent,
     typologyNames,
-    qualityNames
+    qualityNames,
+    getStatsQuality
   };
 };

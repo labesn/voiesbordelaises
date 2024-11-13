@@ -21,5 +21,9 @@ export const useConfig = () => {
     return config.qualityDisplay;
   }
 
-  return { getRevName, getAssoName, getAssoLink, getNbVoiesCyclables, displayQuality };
+  function displayQualityOnHomePage(): boolean {
+    return config.qualityDisplayOnHomePage;
+  }
+
+  return { getRevName, getAssoName, getAssoLink, getNbVoiesCyclables, displayQuality, displayQualityOnHomePage };
 };
